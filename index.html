@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Spider-Man Universe: explora el multiverso arácnido, conoce a cada Spider-Man en 3D y viaja entre dimensiones.">
+    <meta name="theme-color" content="#07070f">
+
+    <title>Spider-Man Universe | Inicio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Permanent+Marker&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/spiderverse.css">
+</head>
+
+<body>
+
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <symbol id="spider" viewBox="0 0 200 200">
+            <g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M92 92 Q62 66 58 24"/><path d="M108 92 Q138 66 142 24"/>
+                <path d="M90 102 Q56 96 30 64"/><path d="M110 102 Q144 96 170 64"/>
+                <path d="M90 116 Q54 124 34 162"/><path d="M110 116 Q146 124 166 162"/>
+                <path d="M94 128 Q72 150 66 192"/><path d="M106 128 Q128 150 134 192"/>
+            </g>
+            <ellipse cx="100" cy="114" rx="15" ry="30" fill="currentColor"/>
+            <circle cx="100" cy="76" r="12" fill="currentColor"/>
+        </symbol>
+    </svg>
+
+    <header class="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo" aria-label="Spider-Verse, inicio">
+                <svg aria-hidden="true"><use href="#spider"/></svg>
+                SPIDER-VERSE
+            </a>
+            <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="navigation" id="menu" aria-label="Principal">
+                <a href="index.html" aria-current="page">INICIO</a>
+                <a href="personajes.html">PERSONAJES</a>
+                <a href="universos.html">UNIVERSOS</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="contenido">
+
+        <!-- PORTADA PRINCIPAL -->
+        <section class="hero">
+            <div class="container">
+
+                <div class="hero-content">
+                    <span class="caption">Welcome to the Spider-Verse</span>
+                    <h1>
+                        <span class="glitch" data-text="SPIDER-MAN">SPIDER-MAN</span>
+                        <span class="glitch accent-word" data-text="UNIVERSE">UNIVERSE</span>
+                    </h1>
+                    <p class="hero-description">
+                        Descubre un universo lleno de héroes, dimensiones alternativas
+                        y aventuras. Explora las diferentes versiones de Spider-Man
+                        y descubre los secretos del multiverso.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="universos.html" class="button"><span>EXPLORAR UNIVERSOS</span></a>
+                        <a href="personajes.html" class="button button-secondary"><span>VER PERSONAJES 3D</span></a>
+                    </div>
+                </div>
+
+                <div class="hero-visual" aria-hidden="true">
+                    <div class="portal"></div>
+                    <div class="portal-2"></div>
+                    <div class="halftone-disc"></div>
+                    <div class="emblem">
+                        <svg viewBox="0 0 200 200">
+                            <use href="#spider" class="layer-cyan" style="color:var(--cyan)"/>
+                            <use href="#spider" class="layer-red" style="color:var(--red)"/>
+                            <use href="#spider" style="color:#fff"/>
+                        </svg>
+                    </div>
+                    <span class="sticker sticker-1">EARTH-1610</span>
+                    <span class="sticker sticker-2">MULTIVERSE</span>
+                    <span class="tag hero-tag">¡thwip!</span>
+                </div>
+
+            </div>
+
+            <a href="#spiders-3d" class="scroll-hint">SCROLL</a>
+
+            <div class="ticker" aria-hidden="true">
+                <div class="ticker-track">
+                    <span>EARTH-616</span><span>EARTH-1610</span><span>EARTH-65</span><span>EARTH-928</span>
+                    <span>EARTH-138</span><span>EARTH-50101</span><span>NUEVA YORK</span><span>MUMBATTAN</span>
+                    <span>EARTH-616</span><span>EARTH-1610</span><span>EARTH-65</span><span>EARTH-928</span>
+                    <span>EARTH-138</span><span>EARTH-50101</span><span>NUEVA YORK</span><span>MUMBATTAN</span>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- VISOR 3D (vista previa) -->
+        <section class="section" id="spiders-3d" aria-labelledby="titulo-3d">
+            <div class="container">
+
+                <div class="section-head reveal">
+                    <span class="caption">Spider-Society · Archivo</span>
+                    <h2 id="titulo-3d" class="misprint">ELIGE TU SPIDER</h2>
+                    <p>Arrastra para girar el modelo y cambia de dimensión con las pestañas. En la sección de personajes encontrarás poses, fichas completas y capturas.</p>
+                </div>
+
+                <div class="viewer reveal" id="viewer">
+                    <div class="stage" id="stage">
+                        <canvas class="scene-canvas" id="scene" aria-label="Modelo 3D del personaje seleccionado" role="img"></canvas>
+                        <div class="loader" aria-hidden="true">CARGANDO DIMENSIÓN…</div>
+                        <span class="stage-ui stage-earth" id="stage-earth">EARTH-616</span>
+                        <span class="stage-ui stage-hint">⟲ ARRASTRA PARA GIRAR</span>
+                        <div class="stage-fallback">Tu navegador no pudo iniciar WebGL, así que el modelo 3D no está disponible.</div>
+                    </div>
+
+                    <div class="info">
+                        <div class="tabs" role="tablist" aria-label="Personajes" id="tabs"></div>
+                        <div aria-live="polite">
+                            <div class="char-alias" id="char-alias"></div>
+                            <h3 class="char-name misprint" id="char-name"></h3>
+                        </div>
+                        <p class="char-desc" id="char-desc"></p>
+                        <div class="stats" id="stats"></div>
+                        <div class="info-actions">
+                            <a href="personajes.html" class="button" id="char-link"><span>VER FICHA COMPLETA</span></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ACCESOS A LAS SECCIONES -->
+        <section class="section" aria-labelledby="titulo-explorar">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="caption">Choose your destination</span>
+                    <h2 id="titulo-explorar" class="misprint">EXPLORE THE UNIVERSE</h2>
+                    <p>Tu aventura comienza aquí. Selecciona una sección y descubre todo lo que esconde el universo Spider-Man.</p>
+                </div>
+
+                <div class="cards">
+                    <article class="card reveal">
+                        <span class="card-number" aria-hidden="true">01</span>
+                        <span class="caption">Archivo arácnido</span>
+                        <h3>PERSONAJES</h3>
+                        <p>Conoce a los diferentes Spider-Man en 3D: sus habilidades, historias, enemigos y versiones alternativas.</p>
+                        <a href="personajes.html" class="card-link">DESCUBRIR PERSONAJES</a>
+                    </article>
+
+                    <article class="card reveal">
+                        <span class="card-number" aria-hidden="true">02</span>
+                        <span class="caption">Mapa del multiverso</span>
+                        <h3>UNIVERSOS</h3>
+                        <p>Viaja por diferentes dimensiones, amplía cada ilustración en alta resolución y atraviesa los portales del multiverso.</p>
+                        <a href="universos.html" class="card-link">EXPLORAR MULTIVERSO</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- FRASE FINAL -->
+        <section class="quote">
+            <div class="container reveal">
+                <div class="speech"><h2>WITH GREAT POWER COMES GREAT RESPONSIBILITY</h2></div>
+                <p>Cada universo tiene un héroe. Cada héroe tiene una historia.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container footer-inner">
+            <a href="index.html" class="logo"><svg aria-hidden="true"><use href="#spider"/></svg>SPIDER-VERSE</a>
+            <nav aria-label="Pie de página">
+                <a href="index.html">INICIO</a>
+                <a href="personajes.html">PERSONAJES</a>
+                <a href="universos.html">UNIVERSOS</a>
+            </nav>
+            <div>SPIDER-MAN UNIVERSE © 2026 · AN INTERACTIVE MULTIVERSE EXPERIENCE</div>
+        </div>
+    </footer>
+
+    <script src="assets/js/ui.js"></script>
+    <script src="assets/js/spider-data.js"></script>
+    <script src="assets/js/spider-models.js"></script>
+    <script src="assets/js/spider-viewer.js"></script>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+        const { characters } = window.SPIDER_DATA;
+        const viewerEl = document.getElementById('viewer');
+        const stage = document.getElementById('stage');
+        const tabsEl = document.getElementById('tabs');
+        const $ = (id) => document.getElementById(id);
+
+        tabsEl.innerHTML = characters.map((c, i) => `
+            <button class="tab" role="tab" data-id="${c.id}" style="--c:${c.accent}"
+                    aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}">${c.alias.split(' ')[0]}</button>`).join('');
+        const tabs = [...tabsEl.querySelectorAll('.tab')];
+
+        const viewer = SpiderViewer.create({
+            THREE, OrbitControls, GLTFLoader,
+            canvas: $('scene'), stage, characters, distance: 5.8,
+        });
+
+        function select(id, focus = false) {
+            const c = characters.find((x) => x.id === id);
+            viewerEl.style.setProperty('--accent', c.accent);
+            viewerEl.style.setProperty('--accent-2', c.accent2);
+            $('char-alias').textContent = c.alias;
+            $('char-name').textContent = c.name;
+            $('char-desc').textContent = c.desc;
+            $('stage-earth').textContent = c.earth;
+            $('char-link').href = 'personajes.html#' + c.id;
+            $('stats').innerHTML = Object.entries(c.stats).slice(0, 4).map(([k, v]) => `
+                <div class="stat"><span>${k}</span><div class="stat-bar"><div class="stat-fill" data-v="${v}"></div></div><span class="stat-value">${v}</span></div>`).join('');
+            requestAnimationFrame(() => document.querySelectorAll('#stats .stat-fill').forEach((el) => { el.style.width = el.dataset.v + '%'; }));
+            tabs.forEach((t) => {
+                const on = t.dataset.id === id;
+                t.setAttribute('aria-selected', String(on));
+                t.tabIndex = on ? 0 : -1;
+                if (on && focus) t.focus();
+            });
+            if (viewer) viewer.setCharacter(id);
+        }
+
+        tabs.forEach((tab, i) => {
+            tab.addEventListener('click', () => select(tab.dataset.id));
+            tab.addEventListener('keydown', (e) => {
+                if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+                const next = (i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+                select(tabs[next].dataset.id, true);
+            });
+        });
+
+        select(characters[0].id);
+    </script>
+
+</body>
+</html>

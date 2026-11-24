@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Archivo de la Spider-Society: modelos 3D interactivos, poses, habilidades y estadísticas de cada Spider-Man del multiverso.">
+    <meta name="theme-color" content="#07070f">
+
+    <title>Personajes | Spider-Man Universe</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Permanent+Marker&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/spiderverse.css">
+</head>
+
+<body>
+
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <symbol id="spider" viewBox="0 0 200 200">
+            <g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M92 92 Q62 66 58 24"/><path d="M108 92 Q138 66 142 24"/>
+                <path d="M90 102 Q56 96 30 64"/><path d="M110 102 Q144 96 170 64"/>
+                <path d="M90 116 Q54 124 34 162"/><path d="M110 116 Q146 124 166 162"/>
+                <path d="M94 128 Q72 150 66 192"/><path d="M106 128 Q128 150 134 192"/>
+            </g>
+            <ellipse cx="100" cy="114" rx="15" ry="30" fill="currentColor"/>
+            <circle cx="100" cy="76" r="12" fill="currentColor"/>
+        </symbol>
+        <symbol id="i-rotate" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M20 12a8 8 0 1 1-2.4-5.7M20 4v5h-5"/></symbol>
+        <symbol id="i-reset" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M12 3v4M12 17v4M3 12h4M17 12h4"/><circle cx="12" cy="12" r="3" fill="currentColor"/></symbol>
+        <symbol id="i-camera" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" d="M3 8h4l2-3h6l2 3h4v11H3z"/><circle cx="12" cy="13" r="3.5" fill="none" stroke="currentColor" stroke-width="2.2"/></symbol>
+        <symbol id="i-full" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></symbol>
+    </svg>
+
+    <header class="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo" aria-label="Spider-Verse, inicio">
+                <svg aria-hidden="true"><use href="#spider"/></svg>
+                SPIDER-VERSE
+            </a>
+            <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="navigation" id="menu" aria-label="Principal">
+                <a href="index.html">INICIO</a>
+                <a href="personajes.html" aria-current="page">PERSONAJES</a>
+                <a href="universos.html">UNIVERSOS</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="contenido">
+
+        <!-- CABECERA -->
+        <section class="page-hero">
+            <svg class="page-hero-art" viewBox="0 0 200 200" aria-hidden="true"><use href="#spider"/></svg>
+            <div class="container">
+                <nav class="breadcrumb" aria-label="Ruta"><a href="index.html">INICIO</a><span>/</span><span>PERSONAJES</span></nav>
+                <span class="caption">Spider-Society · Base de datos</span>
+                <h1><span class="glitch" data-text="PERSONAJES">PERSONAJES</span></h1>
+                <p>Seis héroes, seis dimensiones. Elige un Spider, gíralo en 3D, cambia su pose y descubre su historia, sus poderes y sus estadísticas.</p>
+            </div>
+        </section>
+
+
+        <!-- SELECTOR + VISOR -->
+        <section class="section-tight" aria-labelledby="titulo-archivo">
+            <div class="container">
+                <h2 id="titulo-archivo" class="visually-hidden">Archivo de personajes</h2>
+
+                <div class="roster reveal" role="tablist" aria-label="Elige un personaje" id="roster"></div>
+
+                <div class="viewer viewer-lg reveal" id="viewer">
+
+                    <div class="stage" id="stage">
+                        <canvas class="scene-canvas" id="scene" aria-label="Modelo 3D del personaje seleccionado" role="img"></canvas>
+                        <div class="loader" aria-hidden="true">CARGANDO DIMENSIÓN…</div>
+                        <span class="stage-ui stage-earth" id="stage-earth">EARTH-616</span>
+
+                        <div class="stage-ui toolbar" role="toolbar" aria-label="Controles del visor">
+                            <button class="tool" id="btn-rotate" aria-pressed="true" title="Giro automático">
+                                <svg aria-hidden="true"><use href="#i-rotate"/></svg><span>GIRO</span>
+                            </button>
+                            <button class="tool" id="btn-reset" title="Restablecer cámara">
+                                <svg aria-hidden="true"><use href="#i-reset"/></svg><span>CENTRAR</span>
+                            </button>
+                            <button class="tool" id="btn-shot" title="Descargar captura PNG">
+                                <svg aria-hidden="true"><use href="#i-camera"/></svg><span>CAPTURA</span>
+                            </button>
+                            <button class="tool" id="btn-full" title="Pantalla completa">
+                                <svg aria-hidden="true"><use href="#i-full"/></svg><span>AMPLIAR</span>
+                            </button>
+                        </div>
+
+                        <div class="stage-ui poses" role="group" aria-label="Poses">
+                            <button class="tool" data-pose="reposo" aria-pressed="true">REPOSO</button>
+                            <button class="tool" data-pose="accion" aria-pressed="false">ACCIÓN</button>
+                            <button class="tool" data-pose="thwip" aria-pressed="false">¡THWIP!</button>
+                        </div>
+
+                        <span class="stage-ui stage-hint">⟲ ARRASTRA PARA GIRAR · RUEDA PARA ACERCAR</span>
+                        <div class="stage-fallback">Tu navegador no pudo iniciar WebGL, así que el modelo 3D no está disponible. Prueba con una versión reciente de Chrome, Edge o Firefox.</div>
+                    </div>
+
+                    <div class="info detail" aria-live="polite">
+                        <div>
+                            <div class="char-alias" id="char-alias"></div>
+                            <h3 class="char-name misprint" id="char-name"></h3>
+                        </div>
+                        <a class="earth-link" id="earth-link" href="universos.html"></a>
+                        <p class="char-desc" id="char-bio"></p>
+
+                        <div>
+                            <h3 class="label">PODERES</h3>
+                            <ul class="chips" id="powers"></ul>
+                        </div>
+
+                        <div>
+                            <h3 class="label">ESTADÍSTICAS</h3>
+                            <div class="stats" id="stats"></div>
+                        </div>
+
+                        <dl class="facts">
+                            <div><dt>PRIMERA APARICIÓN</dt><dd id="debut"></dd></div>
+                            <div><dt>ARCHIENEMIGO</dt><dd id="enemy"></dd></div>
+                        </dl>
+
+                        <blockquote class="bubble" id="quote"></blockquote>
+                    </div>
+                </div>
+
+                <p class="glb-note">
+                    Los modelos se generan en tiempo real con sombreado de cómic. ¿Tienes un modelo <code>.glb</code> propio?
+                    Guárdalo en <code>models/</code> y escribe su ruta en <code>assets/js/spider-data.js</code> (campo <code>glb</code>).
+                </p>
+            </div>
+        </section>
+
+
+        <!-- CTA -->
+        <section class="quote">
+            <div class="container reveal">
+                <div class="speech"><h2>CADA UNIVERSO TIENE UN HÉROE</h2></div>
+                <p>Visita sus dimensiones y amplía cada ilustración al detalle.</p>
+                <div class="section-cta"><a href="universos.html" class="button"><span>EXPLORAR UNIVERSOS →</span></a></div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container footer-inner">
+            <a href="index.html" class="logo"><svg aria-hidden="true"><use href="#spider"/></svg>SPIDER-VERSE</a>
+            <nav aria-label="Pie de página">
+                <a href="index.html">INICIO</a>
+                <a href="personajes.html">PERSONAJES</a>
+                <a href="universos.html">UNIVERSOS</a>
+            </nav>
+            <div>SPIDER-MAN UNIVERSE © 2026 · AN INTERACTIVE MULTIVERSE EXPERIENCE</div>
+        </div>
+    </footer>
+
+    <script src="assets/js/ui.js"></script>
+    <script src="assets/js/spider-data.js"></script>
+    <script src="assets/js/spider-models.js"></script>
+    <script src="assets/js/spider-viewer.js"></script>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+        const { characters, universes } = window.SPIDER_DATA;
+        const $ = (id) => document.getElementById(id);
+        const viewerEl = $('viewer');
+        const stage = $('stage');
+
+        /* Selector de personajes */
+        const roster = $('roster');
+        roster.innerHTML = characters.map((c) => `
+            <button class="roster-card" role="tab" id="tab-${c.id}" data-id="${c.id}" style="--c:${c.accent}" aria-selected="false" tabindex="-1">
+                <span class="rc-earth">${c.earth}</span>
+                <span class="rc-name">${c.alias}</span>
+                <svg viewBox="0 0 200 200" aria-hidden="true"><use href="#spider"/></svg>
+            </button>`).join('');
+        const cards = [...roster.querySelectorAll('.roster-card')];
+
+        const viewer = SpiderViewer.create({
+            THREE, OrbitControls, GLTFLoader,
+            canvas: $('scene'), stage, characters, snapshots: true, distance: 5.4,
+        });
+
+        function select(id, { focus = false, push = true } = {}) {
+            const c = characters.find((x) => x.id === id) || characters[0];
+            const u = universes.find((x) => x.id === c.universe);
+
+            viewerEl.style.setProperty('--accent', c.accent);
+            viewerEl.style.setProperty('--accent-2', c.accent2);
+            $('char-alias').textContent = c.alias;
+            $('char-name').textContent = c.name;
+            $('char-bio').textContent = c.bio;
+            $('stage-earth').textContent = c.earth;
+            $('earth-link').textContent = `${c.earth} · ${u ? u.name.toUpperCase() : ''} →`;
+            $('earth-link').href = `universos.html#${c.universe}`;
+            $('powers').innerHTML = c.powers.map((p) => `<li>${p}</li>`).join('');
+            $('debut').textContent = c.debut;
+            $('enemy').textContent = c.enemy;
+            $('quote').textContent = `«${c.quote}»`;
+            $('stats').innerHTML = Object.entries(c.stats).map(([k, v]) => `
+                <div class="stat"><span>${k}</span><div class="stat-bar"><div class="stat-fill" data-v="${v}"></div></div><span class="stat-value">${v}</span></div>`).join('');
+            requestAnimationFrame(() => document.querySelectorAll('#stats .stat-fill').forEach((el) => { el.style.width = el.dataset.v + '%'; }));
+
+            cards.forEach((card) => {
+                const on = card.dataset.id === c.id;
+                card.setAttribute('aria-selected', String(on));
+                card.tabIndex = on ? 0 : -1;
+                if (on && focus) card.focus();
+            });
+
+            document.title = `${c.alias} · ${c.name} | Spider-Man Universe`;
+            if (push) history.replaceState(null, '', '#' + c.id);
+            if (viewer) viewer.setCharacter(c.id);
+        }
+
+        cards.forEach((card, i) => {
+            card.addEventListener('click', () => select(card.dataset.id));
+            card.addEventListener('keydown', (e) => {
+                if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+                e.preventDefault();
+                const next = (i + (e.key === 'ArrowRight' ? 1 : -1) + cards.length) % cards.length;
+                select(cards[next].dataset.id, { focus: true });
+            });
+        });
+
+        /* Poses */
+        const poseBtns = [...document.querySelectorAll('[data-pose]')];
+        poseBtns.forEach((btn) => btn.addEventListener('click', () => {
+            poseBtns.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+            if (viewer) viewer.setPose(btn.dataset.pose);
+        }));
+
+        /* Herramientas */
+        $('btn-rotate').addEventListener('click', (e) => {
+            if (!viewer) return;
+            const on = !viewer.autoRotate;
+            viewer.setAutoRotate(on);
+            e.currentTarget.setAttribute('aria-pressed', String(on));
+        });
+        $('btn-reset').addEventListener('click', () => viewer && viewer.resetView());
+        $('btn-shot').addEventListener('click', () => {
+            if (!viewer) return;
+            const a = document.createElement('a');
+            a.href = viewer.snapshot();
+            a.download = `spider-${viewer.current}.png`;
+            a.click();
+        });
+        $('btn-full').addEventListener('click', () => {
+            if (document.fullscreenElement) document.exitFullscreen();
+            else if (stage.requestFullscreen) stage.requestFullscreen();
+        });
+        if (!viewer) document.querySelectorAll('.toolbar, .poses').forEach((el) => { el.hidden = true; });
+        if (viewer && !viewer.autoRotate) $('btn-rotate').setAttribute('aria-pressed', 'false');
+
+        /* Enlace directo: personajes.html#miles */
+        const fromHash = () => location.hash.slice(1);
+        select(characters.some((c) => c.id === fromHash()) ? fromHash() : characters[0].id, { push: false });
+        window.addEventListener('hashchange', () => select(fromHash(), { push: false }));
+    </script>
+
+</body>
+</html>
